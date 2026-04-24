@@ -1,0 +1,339 @@
+:root {
+    --bg-dark: #0b011d;
+    --primary-purple: #7d1cfa;
+    --text-white: #ffffff;
+    --text-gray: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.invitation-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-light) 100%);
+    z-index: 1;
+}
+
+.background-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(147, 51, 234, 0.4) 0%, rgba(18, 0, 47, 0) 60%);
+    pointer-events: none;
+    /* Không cản trở các phần tử khác */
+    z-index: 0;
+}
+
+body {
+    background: var(--bg-dark);
+    color: var(--text-white);
+    overflow: hidden;
+    height: 100vh;
+}
+
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
+}
+
+
+/* --- DICE STYLING --- */
+
+.dice-wrapper {
+    display: flex;
+    gap: 40px;
+    perspective: 1000px;
+    margin-bottom: 40px;
+}
+
+.dice {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 2s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.face {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1.5rem;
+}
+
+
+/* Tọa độ các mặt để xoay đúng */
+
+.f1 {
+    transform: translateZ(30px);
+}
+
+.f6 {
+    transform: rotateY(180deg) translateZ(30px);
+}
+
+.f2 {
+    transform: rotateY(90deg) translateZ(30px);
+}
+
+.f5 {
+    transform: rotateY(-90deg) translateZ(30px);
+}
+
+.f3 {
+    transform: rotateX(90deg) translateZ(30px);
+}
+
+.f4 {
+    transform: rotateX(-90deg) translateZ(30px);
+}
+
+
+/* Ép kết quả: Xúc xắc 1 ra 3, Xúc xắc 2 ra 6 */
+
+.result-3 {
+    transform: rotateX(-90deg) rotateZ(360deg);
+}
+
+.result-6 {
+    transform: rotateY(-180deg) rotateZ(360deg);
+}
+
+#roll-btn {
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
+/* --- ANTOIN THEME --- */
+
+.glow-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at 50% 120%, var(--primary-purple) 0%, transparent 50%), radial-gradient(circle at 10% 80%, #2b0b5e 0%, transparent 30%);
+}
+
+.navbar {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logo span {
+    font-size: 0.8rem;
+    vertical-align: super;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.btn-hire {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+}
+
+.hero {
+    text-align: center;
+    max-width: 850px;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--text-gray);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    /* Hiệu ứng mượt mà */
+}
+
+.badge2 {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: var(--text-gray);
+}
+
+.badge3 {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 16px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 1.8rem;
+    color: var(--text-gray);
+    margin-bottom: 0px;
+    /* Giảm con số này xuống (ví dụ từ 30px thành 10px) */
+}
+
+.main-heading {
+    font-size: 5.5rem;
+    font-weight: 400;
+    letter-spacing: -2px;
+    margin-top: 0;
+    padding-top: 0;
+    /* CHỈ GIỮ LẠI MỘT DÒNG NÀY */
+    line-height: 0.85;
+    /* Thử giảm xuống dưới 1.0 để kéo chữ lên sát hơn */
+    margin-bottom: 100px;
+}
+
+.sub-text {
+    color: var(--text-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+}
+
+.cta-group {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-dark {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.recipient-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* Đây là cách hiện đại nhất để kiểm soát khoảng cách giữa 2 phần tử con */
+}
+
+.badge-main {
+    padding: 10px 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.badge-to {
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 10px;
+}
+
+.guest-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 30px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.badge-info {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    margin-right: 15px;
+}
+
+.info-text {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* --- Hiệu ứng di chuột vào Badge (Phình vừa phải) --- */
+
+.hover-bubble:hover {
+    transform: scale(1.15);
+    /* Phình to 15% */
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
+    /* Thêm bóng mờ */
+    background: rgba(147, 51, 234, 0.3);
+    /* Làm sáng badge hơn */
+}
